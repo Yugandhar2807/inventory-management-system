@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import productRoutes from "./src/routes/productRoutes.js";
 import transactionRoutes from "./src/routes/transactionRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
@@ -8,8 +7,6 @@ import categoryRoutes from "./src/routes/categoryRoutes.js";
 import supplierRoutes from "./src/routes/supplierRoutes.js";
 import orderRoutes from "./src/routes/orderRoutes.js";
 import "./src/config/db.js";
-
-dotenv.config();
 
 const app = express();
 
@@ -27,13 +24,14 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/suppliers", supplierRoutes);
 app.use("/api/orders", orderRoutes);
 
-// test route
+// Health check route
 app.get("/", (req, res) => {
-  res.send("Inventory Management System API running...");
+  res.json({ message: "✅ Inventory Management System API is running..." });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+  console.log(`📚 API Documentation: http://localhost:${PORT}/api/*\n`);
 });

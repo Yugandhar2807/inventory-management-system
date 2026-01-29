@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const JWT_SECRET = process.env.JWT_SECRET; // same as in authController
+const JWT_SECRET = "super_secret_change_me"; // same as in authController
 
 function authMiddleware(req, res, next) {
   const authHeader = req.headers["authorization"];
